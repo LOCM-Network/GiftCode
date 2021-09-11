@@ -87,7 +87,7 @@ public class FormStorage {
         form.addElement(TextFormat.colorize("Giftcode chua su dung"));
         loader.getGiftCodes().keySet().forEach(key -> {
             GiftCode code = loader.getGiftCodes().get(key);
-            if(!(SQLiteProvider.exists(player, code))){
+            if(!SQLiteProvider.exists(player, code)){
                 form.addElement("- " + code.getGiftcode());
             }
         });
