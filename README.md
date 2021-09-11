@@ -1,2 +1,2 @@
-# GiftCode [WIP]
-GiftCode plugin for nukkitX
+# GiftCode
+GiftCode plugin for nukkit
