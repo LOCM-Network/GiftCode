@@ -1,0 +1,8 @@
+me\phuongaz\giftcode\utils\Utils.class
+me\phuongaz\giftcode\command\GiftCodeCommand.class
+me\phuongaz\giftcode\event\PlayerGiftCodeEvent.class
+me\phuongaz\giftcode\GiftCode.class
+me\phuongaz\giftcode\command\AdminCommand.class
+me\phuongaz\giftcode\EventListener.class
+me\phuongaz\giftcode\GiftCodeLoader.class
+me\phuongaz\giftcode\form\FormStorage.class

@@ -1,0 +1,5 @@
+name: GiftCode
+main: me.phuongaz.giftcode.GiftCodeLoader
+author: phuongaz
+version: 1.0
+api: ["1.0.0"]
