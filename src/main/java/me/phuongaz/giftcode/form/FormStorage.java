@@ -98,6 +98,7 @@ public class FormStorage {
                 Server.getInstance().getPluginManager().callEvent(new PlayerGiftCodeEvent(player, giftcode));
             }
         });
+        form.send(player);
     }
     
 }
