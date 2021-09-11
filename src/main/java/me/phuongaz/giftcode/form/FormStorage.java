@@ -31,9 +31,9 @@ public class FormStorage {
     public static void sendCreateForm(Player player){
         CustomForm form = new CustomForm("Create form");
         String code = Utils.genGiftCode();
-        form.addElement("Edit:", new Input("prefix", code, "LOCM" + code));
+        form.addElement("code", new Input("prefix", code, "LOCM" + code));
         form.setHandler((p, response) -> {
-            String after_code = response.getInput("prefix").getValue();
+            String after_code = response.getInput("code").getValue();
             if(code.equals("")){
                 sendMainForm(player);
                 return;
