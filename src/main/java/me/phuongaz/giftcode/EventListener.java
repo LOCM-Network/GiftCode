@@ -7,6 +7,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.utils.TextFormat;
 import me.phuongaz.giftcode.event.PlayerGiftCodeEvent;
+import me.phuongaz.giftcode.provider.SQLiteProvider;
 
 public class EventListener implements Listener{
 
@@ -18,6 +19,6 @@ public class EventListener implements Listener{
             Server.getInstance().dispatchCommand(new ConsoleCommandSender(), gift.replace("{player}", player.getName()));
         }
         player.sendMessage(TextFormat.colorize("&l&fNhập thành công code:&e " + giftcode.getGiftcode()));
-        GiftCodeLoader.getInstance().setData(player, giftcode);
+        SQLiteProvider.addPlayer(player, giftcode);
     }
 }

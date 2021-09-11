@@ -9,6 +9,7 @@ import cn.nukkit.utils.TextFormat;
 import me.phuongaz.giftcode.GiftCode;
 import me.phuongaz.giftcode.GiftCodeLoader;
 import me.phuongaz.giftcode.event.PlayerGiftCodeEvent;
+import me.phuongaz.giftcode.provider.SQLiteProvider;
 import me.phuongaz.giftcode.utils.Utils;
 import ru.contentforge.formconstructor.form.CustomForm;
 import ru.contentforge.formconstructor.form.SimpleForm;
@@ -31,7 +32,7 @@ public class FormStorage {
     public static void sendCreateForm(Player player){
         CustomForm form = new CustomForm("Create form");
         String code = Utils.genGiftCode();
-        form.addElement("code", new Input("prefix", code, "LOCM" + code));
+        form.addElement("code", new Input("Edit: ", code, "LOCM" + code));
         form.setHandler((p, response) -> {
             String after_code = response.getInput("code").getValue();
             if(code.equals("")){
@@ -86,7 +87,7 @@ public class FormStorage {
         form.addElement(TextFormat.colorize("Giftcode chua su dung"));
         loader.getGiftCodes().keySet().forEach(key -> {
             GiftCode code = loader.getGiftCodes().get(key);
-            if(!loader.isUse(player, code)){
+            if(!(SQLiteProvider.exists(player, code))){
                 form.addElement("- " + code.getGiftcode());
             }
         });
