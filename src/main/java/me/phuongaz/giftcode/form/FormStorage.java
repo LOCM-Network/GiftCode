@@ -95,6 +95,10 @@ public class FormStorage {
             String code = response.getInput("code").getValue().toUpperCase();
             if(loader.isGiftCode(code)){
                 GiftCode giftcode = GiftCodeLoader.getInstance().getGiftCodeByString(code);
+                if(SQLiteProvider.exists(p, giftcode){
+                    p.sendMessage(TextFormst.colorize("&l&cGiftcode đã sử dụng");
+                    return;
+                }
                 Server.getInstance().getPluginManager().callEvent(new PlayerGiftCodeEvent(player, giftcode));
             }
         });
