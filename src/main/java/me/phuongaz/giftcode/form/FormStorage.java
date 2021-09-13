@@ -16,6 +16,7 @@ import ru.contentforge.formconstructor.form.CustomForm;
 import ru.contentforge.formconstructor.form.SimpleForm;
 import ru.contentforge.formconstructor.form.element.Dropdown;
 import ru.contentforge.formconstructor.form.element.Input;
+import ru.contentforge.formconstructor.form.element.Toggle;
 import ru.contentforge.formconstructor.form.element.SelectableElement;
 
 public class FormStorage {
@@ -66,16 +67,20 @@ public class FormStorage {
         form.addElement("rewards", new Input("Commands: (# = next command, {player} = player)"));
         form.addElement("perm", new Input("Permission", "giftcode."+code, "giftcode."+code));
         form.addElement("temp", new Input("Temp (m)"));
+        form.addElement("1use" , new Toggle("Chi su dung duoc 1 lan"));
         form.setHandler((p, response) -> {
             List<String> rws = new ArrayList<>();
             String after_code = response.getInput("code").getValue();
             for(String rw : response.getInput("rewards").getValue().split("#")){
                 rws.add(rw);
             }
+            Boolean use = response.getToggle("1use").getValue();
+            
             String permission = response.getInput("perm").getValue();
             if(!permission.equals("")) giftcode.setPermission(permission);
             giftcode.setRewards(rws);
             giftcode.setGiftcode(after_code);
+            giftcode.setUse(use);
             GiftCodeLoader.getInstance().getConfig().remove(code);
             GiftCodeLoader.getInstance().saveGiftCode(giftcode);
             String temp = response.getInput("temp").getValue();
@@ -123,7 +128,7 @@ public class FormStorage {
         loader.getGiftCodes().keySet().forEach(key -> {
             GiftCode code = loader.getGiftCodes().get(key);
             if(!SQLiteProvider.exists(player, code)){
-                if(code.getPermission() != null){
+                if(!code.getPermission().equals("")){
                     if(player.hasPermission(code.getPermission())){
                         form.addElement(TextFormat.colorize("&l&e- &f" + code.getGiftcode()));
                     }

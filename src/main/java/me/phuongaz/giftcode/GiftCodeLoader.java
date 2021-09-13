@@ -38,6 +38,7 @@ public class GiftCodeLoader extends PluginBase{
         if(giftcode.getPermission() != null){
             getConfig().set(giftcode.getGiftcode() + ".permission", giftcode.getPermission());
         }
+        getConfig().set(giftcode.getGiftcode() + ".1use", giftcode.getUse());
         getConfig().save();
         getConfig().reload();
         this.loadCodes();
@@ -52,8 +53,16 @@ public class GiftCodeLoader extends PluginBase{
             GiftCode giftcode = new GiftCode(code);
             giftcode.setRewards(getConfig().getStringList(code + ".commands"));
             giftcode.setPermission(getConfig().getString(code + ".permission"));
+            giftcode.setUse(getConfig().getBoolean(code + ".1use"));
             this.giftcodes.put(code, giftcode);
         });
+    }
+
+    public void removeGiftCode(GiftCode code){
+        getConfig().remove(code.getGiftcode());
+        getConfig().save();
+        getConfig().reload();
+        this.loadCodes();
     }
 
     public GiftCode getGiftCodeByString(String code){

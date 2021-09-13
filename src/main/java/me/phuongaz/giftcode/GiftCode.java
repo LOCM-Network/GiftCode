@@ -12,6 +12,7 @@ public class GiftCode {
     private String giftcode;
     private String permission;
     private List<String> rewards;
+    private Boolean use;
 
     public GiftCode(String giftcode){
         this.giftcode = giftcode;

@@ -19,6 +19,10 @@ public class EventListener implements Listener{
             Server.getInstance().dispatchCommand(new ConsoleCommandSender(), gift.replace("{player}", player.getName()));
         }
         player.sendMessage(TextFormat.colorize("&l&fNhập thành công code:&e " + giftcode.getGiftcode()));
+        if(giftcode.getUse()){
+            GiftCodeLoader.getInstance().removeGiftCode(giftcode);
+            return;
+        }
         SQLiteProvider.addPlayer(player, giftcode);
     }
 }

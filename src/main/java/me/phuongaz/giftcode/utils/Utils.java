@@ -19,12 +19,12 @@ public class Utils {
             @Override
             public void run(){
                 if(this.time <= 0){
-                    GiftCodeLoader.getInstance().getConfig().remove(giftcode.getGiftcode());
+                    GiftCodeLoader.getInstance().removeGiftCode(giftcode);
                     cancel();
                 }
                 this.time -= 1;
             }
-        }.runTaskLater(GiftCodeLoader.getInstance(), 20 * 60);
+        }.runTaskTimer(GiftCodeLoader.getInstance(), 0, 20 * 60);
     }
 
 }
