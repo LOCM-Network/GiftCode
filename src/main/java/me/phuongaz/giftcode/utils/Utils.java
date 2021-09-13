@@ -1,5 +1,8 @@
 package me.phuongaz.giftcode.utils;
 
+import cn.nukkit.scheduler.NukkitRunnable;
+import me.phuongaz.giftcode.GiftCode;
+import me.phuongaz.giftcode.GiftCodeLoader;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class Utils {
@@ -7,6 +10,21 @@ public class Utils {
     public static String genGiftCode(){
         String code = RandomStringUtils.randomAlphanumeric(7).toUpperCase();
         return code;
+    }
+
+    public static void runTempGift(GiftCode giftcode, int min){
+        new NukkitRunnable(){
+            private int time = min;
+
+            @Override
+            public void run(){
+                if(this.time <= 0){
+                    GiftCodeLoader.getInstance().getConfig().remove(giftcode.getGiftcode());
+                    cancel();
+                }
+                this.time -= 1;
+            }
+        }.runTaskLater(GiftCodeLoader.getInstance(), 20 * 60);
     }
 
 }

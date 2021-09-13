@@ -12,9 +12,7 @@ public class GiftCodeCommand extends Command{
     }
     
     public boolean execute(CommandSender sender, String label, String[] args){
-        if(sender.hasPermission("giftcode.admin") && sender instanceof Player){
-            FormStorage.playerForm((Player) sender);
-        }
+        FormStorage.playerForm((Player) sender);
         return true;
     }
 }

@@ -5,14 +5,12 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
+@Setter
+@Getter
 public class GiftCode {
-    
-    @Setter
-    @Getter
-    private String giftcode;
 
-    @Setter
-    @Getter
+    private String giftcode;
+    private String permission;
     private List<String> rewards;
 
     public GiftCode(String giftcode){
