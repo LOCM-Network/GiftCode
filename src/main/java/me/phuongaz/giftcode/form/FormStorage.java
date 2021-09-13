@@ -112,6 +112,7 @@ public class FormStorage {
                 Server.getInstance().dispatchCommand(new ConsoleCommandSender(), cmd);
             }
         });
+        form.send(player);
     }
 
     public static void playerForm(Player player){
